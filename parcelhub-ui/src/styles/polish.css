@@ -1,0 +1,101 @@
+/* ParcelHub shared UI finishing layer */
+:root {
+  font-family: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  --ph-ink: #18243b;
+  --ph-muted: #7b879d;
+  --ph-line: #e8edf5;
+  --ph-page: #f5f7fb;
+  --ph-primary: #6658e8;
+  --ph-primary-dark: #5144cb;
+  --ph-shadow-sm: 0 3px 12px rgba(28, 40, 72, .045);
+  --ph-shadow-md: 0 12px 32px rgba(28, 40, 72, .08);
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { min-width: 320px; min-height: 100%; scroll-behavior: smooth; background: var(--ph-page); }
+body { min-width: 320px; min-height: 100vh; margin: 0; color: var(--ph-ink); background: var(--ph-page); font-family: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.5; }
+#root { width: 100%; max-width: none; min-height: 100vh; margin: 0; display: block; text-align: left; }
+button, input, select, textarea { font: inherit; }
+button { -webkit-tap-highlight-color: transparent; }
+button:disabled { cursor: not-allowed; opacity: .65; }
+input, select, textarea { color: var(--ph-ink); transition: border-color .16s ease, box-shadow .16s ease, background-color .16s ease; }
+input::placeholder, textarea::placeholder { color: #a1aabd; opacity: 1; }
+:focus-visible { outline: 3px solid rgba(102, 88, 232, .32); outline-offset: 3px; }
+::selection { color: #28204f; background: #dcd7ff; }
+img, svg { max-width: 100%; }
+a { color: inherit; }
+
+.primary-button, .secondary-button, .create-parcel-button, .book-button, .track-button,
+.view-track-button, .update-status-button, .login-submit, .register-submit, .ai-send-button,
+.refresh-button, .back-button, .track-back-button {
+  transition: transform .16s ease, box-shadow .16s ease, background-color .16s ease, border-color .16s ease;
+}
+.primary-button:hover, .create-parcel-button:hover, .book-button:hover, .track-button:hover,
+.view-track-button:hover, .update-status-button:hover, .login-submit:hover, .register-submit:hover,
+.ai-send-button:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(86, 72, 207, .18); }
+
+.stat-card, .agent-stat, .admin-stat-card, .parcel-card, .shipment-card, .activity-card,
+.analytics-card, .operations-card, .management-card, .details-card, .history-card,
+.route-card, .estimate-card, .ai-chat-card, .ai-info-panel, .ai-powered-card,
+.journey-card, .delivery-card, .quick-action-card, .performance-card {
+  box-shadow: var(--ph-shadow-sm);
+  transition: box-shadow .18s ease, transform .18s ease, border-color .18s ease;
+}
+.parcel-card:hover, .shipment-card:hover, .delivery-card:hover, .activity-card:hover,
+.management-card:hover, .quick-action-card:hover { border-color: #dfe3f7; box-shadow: var(--ph-shadow-md); }
+
+input:not([type="checkbox"]):not([type="radio"]):focus, select:focus, textarea:focus {
+  border-color: #a59bf5; box-shadow: 0 0 0 3px rgba(102, 88, 232, .10); outline: none;
+}
+.login-panel, .register-panel { border-color: rgba(227, 231, 242, .9); box-shadow: 0 24px 70px rgba(29, 37, 73, .11); }
+.login-input, .register-input, .form-group input, .form-group select, .form-group textarea { border-radius: 10px; }
+.login-submit, .register-submit, .book-button { border-radius: 11px; font-weight: 750; }
+.dashboard-page, .customer-dashboard, .create-page, .track-page, .ai-page, .agent-page, .admin-page { min-height: 100vh; }
+.dashboard-topbar, .agent-topbar, .admin-topbar, .create-topbar, .track-topbar, .ai-topbar { backdrop-filter: blur(14px); }
+.dashboard-hero, .agent-hero, .admin-hero { border-radius: 20px; }
+.stat-card, .agent-stat, .admin-stat-card { border: 1px solid var(--ph-line); border-radius: 14px; background: #fff; }
+.parcel-card, .shipment-card, .delivery-card, .activity-card, .management-card, .details-card, .history-card, .route-card, .estimate-card { border-radius: 14px; }
+.status-badge, .status-pill, .admin-status-pill, .admin-type-pill, .delivery-badge { font-weight: 700; }
+.create-form-section, .payment-section, .delivery-section, .estimate-card { border-radius: 14px; }
+.form-group input, .form-group select, .form-group textarea { width: 100%; min-width: 0; }
+.delivery-option, .delivery-options > button { transition: border-color .16s ease, background-color .16s ease, box-shadow .16s ease; }
+.delivery-option:hover, .delivery-options > button:hover { border-color: #c8c1ff; }
+.ai-chat-card, .ai-info-panel, .ai-powered-card { border: 1px solid var(--ph-line); border-radius: 20px; background: #fff; }
+.ai-message, .message-bubble { overflow-wrap: anywhere; }
+.agent-sidebar, .admin-sidebar, .dashboard-sidebar { box-shadow: 8px 0 30px rgba(19, 27, 53, .035); }
+.delivery-card { border: 1px solid var(--ph-line); background: #fff; }
+.admin-table th, .user-table th, .admin-table-wrapper th { color: #7e899e; font-size: 10px; font-weight: 800; letter-spacing: .055em; }
+.admin-table td, .user-table td, .admin-table-wrapper td { vertical-align: middle; }
+.admin-table tbody tr:hover, .user-table tbody tr:hover, .admin-table-wrapper tbody tr:hover { background: #fafaff; }
+.dashboard-loader, .loading-page, .admin-loading-page, .agent-loading, .admin-loader, .loader-box,
+.track-loader-card, .track-loading-page, .admin-empty-state, .agent-empty, .empty-state,
+.empty-shipments, .error-message, .dashboard-error-card, .admin-error-card, .agent-error,
+.track-error-card, .create-success, .create-error, .register-success { border-radius: 14px; }
+* { scrollbar-width: thin; scrollbar-color: #cbd2e1 transparent; }
+*::-webkit-scrollbar { width: 8px; height: 8px; }
+*::-webkit-scrollbar-thumb { border: 2px solid transparent; border-radius: 999px; background: #cbd2e1; background-clip: padding-box; }
+@media (max-width: 1100px) {
+  .dashboard-content, .agent-content, .admin-content, .create-content, .track-main, .ai-main { max-width: 100%; }
+}
+@media (max-width: 760px) {
+  body { font-size: 13px; }
+  .dashboard-page, .customer-dashboard, .create-page, .track-page, .ai-page, .agent-page, .admin-page { overflow-x: clip; }
+  .dashboard-topbar, .agent-topbar, .admin-topbar, .create-topbar, .track-topbar, .ai-topbar { gap: 12px; }
+  .dashboard-hero, .agent-hero, .admin-hero { border-radius: 15px; }
+  .stat-card, .agent-stat, .admin-stat-card, .parcel-card, .shipment-card, .delivery-card, .details-card, .history-card, .route-card, .estimate-card { min-width: 0; }
+  .admin-table, .user-table, .admin-table-wrapper { max-width: 100%; overflow-x: auto; }
+  .admin-table table, .admin-table-wrapper table, .user-table { min-width: 700px; }
+  .form-grid { grid-template-columns: minmax(0, 1fr) !important; }
+  .form-group { min-width: 0; }
+  .form-group input, .form-group select, .form-group textarea { min-height: 43px; }
+}
+@media (max-width: 480px) {
+  .login-panel, .register-panel { border-radius: 16px; }
+  .login-submit, .register-submit, .book-button, .primary-button { min-height: 44px; }
+  .admin-profile-menu, .profile-dropdown, .agent-profile-menu { max-width: calc(100vw - 30px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}

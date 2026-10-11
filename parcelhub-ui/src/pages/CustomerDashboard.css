@@ -1,0 +1,353 @@
+
+.customer-dashboard {
+  min-height: 100vh;
+  padding: 42px clamp(18px, 5vw, 72px);
+  background: #f5f7fb;
+  color: #172033;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 34px;
+}
+
+.dashboard-eyebrow {
+  color: #6558d9;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.dashboard-header h1 {
+  margin: 12px 0;
+  font-size: clamp(28px, 4vw, 43px);
+  letter-spacing: -1.5px;
+}
+
+.dashboard-header h1 span {
+  color: #6558d9;
+}
+
+.dashboard-subtitle,
+.section-heading p {
+  color: #758096;
+  line-height: 1.7;
+}
+
+.primary-button,
+.secondary-button,
+.text-button {
+  border: 0;
+  border-radius: 11px;
+  padding: 12px 17px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.primary-button {
+  background: #6558d9;
+  color: white;
+  box-shadow: 0 7px 20px #6558d926;
+}
+
+.primary-button:hover,
+.secondary-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 9px 22px #17203318;
+}
+
+.secondary-button {
+  background: #eeecff;
+  color: #5548c6;
+}
+
+.text-button {
+  background: transparent;
+  color: #6558d9;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 38px;
+}
+
+.stat-card {
+  padding: 23px;
+  border: 1px solid #e9ecf4;
+  border-radius: 18px;
+  background: white;
+  box-shadow: 0 8px 25px #1a254008;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px #1a254010;
+}
+
+.stat-icon {
+  display: grid;
+  place-items: center;
+  width: 43px;
+  height: 43px;
+  border-radius: 13px;
+  background: #eeecff;
+  font-size: 21px;
+}
+
+.stat-card p {
+  margin: 17px 0 8px;
+  color: #758096;
+  font-size: 14px;
+}
+
+.stat-card strong {
+  display: block;
+  font-size: 32px;
+}
+
+.stat-note {
+  display: block;
+  margin-top: 8px;
+  color: #8b94a7;
+  font-size: 12px;
+}
+
+.shipments-section {
+  padding: 28px;
+  border: 1px solid #e9ecf4;
+  border-radius: 20px;
+  background: white;
+  box-shadow: 0 8px 25px #1a254008;
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.section-heading h2 {
+  margin: 0;
+  font-size: 23px;
+}
+
+.section-heading p {
+  margin-bottom: 0;
+  font-size: 14px;
+}
+
+.shipment-list {
+  display: grid;
+  gap: 14px;
+}
+
+.shipment-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  padding: 20px;
+  border: 1px solid #edf0f6;
+  border-radius: 15px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.shipment-card:hover {
+  border-color: #c8c1ff;
+  transform: translateY(-2px);
+}
+
+.shipment-main {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  min-width: 0;
+}
+
+.shipment-icon {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
+  border-radius: 13px;
+  background: #f1efff;
+  font-size: 23px;
+}
+
+.shipment-details h3 {
+  margin: 0 0 8px;
+}
+
+.shipment-details p,
+.shipment-meta p {
+  color: #758096;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+.shipment-details strong {
+  color: #3c4660;
+}
+
+.shipment-route span {
+  color: #6558d9;
+  font-weight: 800;
+}
+
+.shipment-meta {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.shipment-meta p {
+  margin: 0 0 4px;
+}
+
+.status-pill {
+  padding: 7px 11px;
+  border-radius: 30px;
+  background: #eeecff;
+  color: #5548c6;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.status-delivered {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.status-cancelled {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.status-in-transit,
+.status-out-for-delivery {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.status-picked-up {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.empty-state,
+.dashboard-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 210px;
+  padding: 25px;
+  text-align: center;
+  color: #758096;
+}
+
+.empty-state > span {
+  font-size: 40px;
+}
+
+.empty-state h3 {
+  margin: 0;
+  color: #172033;
+}
+
+.empty-state p {
+  max-width: 430px;
+  line-height: 1.7;
+}
+
+.error-message {
+  color: #b91c1c;
+}
+
+.loading-spinner {
+  width: 28px;
+  height: 28px;
+  border: 3px solid #e4e1ff;
+  border-top-color: #6558d9;
+  border-radius: 50%;
+  animation: dashboard-spin 0.8s linear infinite;
+}
+
+.dashboard-footer {
+  padding: 25px 0 0;
+  color: #8b94a7;
+  text-align: center;
+  font-size: 12px;
+}
+
+@keyframes dashboard-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 950px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .customer-dashboard {
+    padding: 25px 15px;
+  }
+
+  .stats-grid {
+    gap: 10px;
+  }
+
+  .stat-card {
+    padding: 15px;
+  }
+
+  .shipments-section {
+    padding: 17px;
+  }
+
+  .shipment-card {
+    align-items: stretch;
+    padding: 15px;
+  }
+
+  .shipment-meta {
+    align-items: flex-start;
+  }
+
+  .shipment-route {
+    line-height: 1.8;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .customer-dashboard *,
+  .customer-dashboard *::before,
+  .customer-dashboard *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
