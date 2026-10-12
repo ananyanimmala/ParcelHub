@@ -1,3 +1,4 @@
+
 package ParcelHub.config;
 
 import ParcelHub.security.JwtAuthenticationFilter;
@@ -19,166 +20,72 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-
 @Configuration
 @EnableMethodSecurity
 public class SecurityConfig {
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
-
-    // =========================================================
-    // CONSTRUCTOR
-    // =========================================================
-
+    // Constructor
     public SecurityConfig(
             JwtAuthenticationFilter jwtAuthenticationFilter
     ) {
-
-        this.jwtAuthenticationFilter =
-                jwtAuthenticationFilter;
+        this.jwtAuthenticationFilter = jwtAuthenticationFilter;
     }
 
-
-    // =========================================================
-    // PASSWORD ENCODER
-    // =========================================================
-
+    // Password Encoder
     @Bean
     public PasswordEncoder passwordEncoder() {
-
         return new BCryptPasswordEncoder();
     }
 
-
-    // =========================================================
-    // SECURITY FILTER CHAIN
-    // =========================================================
-
+    // Security Filter Chain
     @Bean
     public SecurityFilterChain securityFilterChain(
             HttpSecurity http
     ) throws Exception {
 
-
         http
+            // CORS
+            .cors(Customizer.withDefaults())
 
-                // =================================================
-                // CORS
-                // =================================================
+            // CSRF
+            .csrf(csrf -> csrf.disable())
 
-                .cors(
-                        Customizer.withDefaults()
+            // Session Management
+            .sessionManagement(session ->
+                session.sessionCreationPolicy(
+                    SessionCreationPolicy.STATELESS
                 )
+            )
 
+            // Authorization
+            .authorizeHttpRequests(auth -> auth
 
-                // =================================================
-                // CSRF
-                // =================================================
+                // CORS Preflight Requests
+                .requestMatchers(
+                    HttpMethod.OPTIONS,
+                    "/**"
+                ).permitAll()
 
-                .csrf(
-                        csrf -> csrf.disable()
-                )
+                // Root URL
+                .requestMatchers("/").permitAll()
 
+                // Login and Registration
+                .requestMatchers("/api/auth/**").permitAll()
 
-                // =================================================
-                // SESSION
-                // =================================================
+                // Route Estimation
+                .requestMatchers("/api/route/**").permitAll()
 
-                .sessionManagement(
-                        session ->
-                                session.sessionCreationPolicy(
-                                        SessionCreationPolicy.STATELESS
-                                )
-                )
+                // All Other Endpoints Require Authentication
+                .anyRequest().authenticated()
+            )
 
-
-                // =================================================
-                // AUTHORIZATION
-                // =================================================
-
-                .authorizeHttpRequests(
-                        auth -> auth
-
-
-                                // =================================
-                                // CORS PREFLIGHT
-                                // =================================
-
-                                .requestMatchers(
-                                        HttpMethod.OPTIONS,
-                                        "/**"
-                                )
-                                .permitAll()
-
-
-                                // =================================
-                                // LOGIN / REGISTER
-                                // =================================
-
-                                .requestMatchers(
-                                        "/api/auth/**"
-                                )
-                                .permitAll()
-
-
-                                // =================================
-                                // ROUTE ESTIMATION
-                                // =================================
-                                /*
-                                 *
-                                 * Route estimation does not expose
-                                 * private parcel information.
-                                 *
-                                 * It only calculates:
-                                 *
-                                 * Address
-                                 *     ↓
-                                 * Coordinates
-                                 *     ↓
-                                 * Road distance
-                                 *     ↓
-                                 * ETA
-                                 *     ↓
-                                 * Estimated charge
-                                 *
-                                 */
-
-                                .requestMatchers(
-                                        "/api/route/**"
-                                )
-                                .permitAll()
-
-
-                                // =================================
-                                // EVERYTHING ELSE
-                                // =================================
-                                /*
-                                 *
-                                 * Parcels
-                                 * Tracking
-                                 * Admin
-                                 * Agent
-                                 * User data
-                                 *
-                                 * all require authentication.
-                                 *
-                                 */
-
-                                .anyRequest()
-                                .authenticated()
-                )
-
-
-                // =================================================
-                // JWT FILTER
-                // =================================================
-
-                .addFilterBefore(
-                        jwtAuthenticationFilter,
-                        UsernamePasswordAuthenticationFilter.class
-                );
-
+            // JWT Authentication Filter
+            .addFilterBefore(
+                jwtAuthenticationFilter,
+                UsernamePasswordAuthenticationFilter.class
+            );
 
         return http.build();
     }
